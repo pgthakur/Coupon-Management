@@ -22,18 +22,31 @@ public class BxGyCoupon extends BaseCoupon {
     @Override
     public double applyDiscount(Cart cart) {
         int buyCount = 0;
-        int freeCount = 0;
+        double totalDiscountAmount = 0;
 
+        // Count how many qualified "buy" products are in the cart
         for (CartItem item : cart.getItems()) {
             if (buyProductIds.contains(item.getProductId())) {
                 buyCount += item.getQuantity();
             }
+        }
+
+        // Calculate how many times the buy condition is satisfied
+        int applicableSets = Math.min(buyCount / buyQuantity, repetitionLimit);
+
+        if (applicableSets <= 0) {
+            return 0;
+        }
+
+        // Calculate the discount for each "get" product
+        for (CartItem item : cart.getItems()) {
             if (getProductIds.contains(item.getProductId())) {
-                freeCount += item.getQuantity();
+                // Calculate how many items qualify for the discount
+                int discountItems = Math.min(applicableSets * getQuantity, item.getQuantity());
+                totalDiscountAmount += discountItems * item.getPrice();
             }
         }
 
-        int applicableCount = Math.min(buyCount / buyQuantity, repetitionLimit);
-        return applicableCount * freeCount;
+        return totalDiscountAmount;
     }
 }
