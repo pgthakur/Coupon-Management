@@ -223,5 +223,5 @@ if (coupon.getUsedCount() >= coupon.getUsageLimit()) {
 ---
 
 ✅ **Author:** Prabhat Gaurav  
-📧 **Contact:** prabhatgaurav@example.com  
+📧 **Contact:** thakurpg9@gmail.com  
 🚀 **Version:** 1.0
