@@ -1,4 +1,4 @@
-### ✅ **README for Coupons Management API**
+### ✅ **Coupons Management API**
 
 ---
 
